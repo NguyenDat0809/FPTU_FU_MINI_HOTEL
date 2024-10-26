@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfRoom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Room>
+    <RoomId>R0001</RoomId>
+    <RoomName>Room 101</RoomName>
+    <RoomTypeId>RT0001</RoomTypeId>
+    <Description>A single room with a king-size bed</Description>
+    <Capacity>2</Capacity>
+    <ImageUrl>C:\Users\84859\Desktop\handon\MiniHotelManagement\MiniHotelManagement\bin\Debug\net6.0-windows\Images\Untitled (2).png</ImageUrl>
+  </Room>
+  <Room>
+    <RoomId>R0002</RoomId>
+    <RoomName>Room 101</RoomName>
+    <RoomTypeId>RT0001</RoomTypeId>
+    <Description>A single room with a king-size bed</Description>
+    <Capacity>2</Capacity>
+    <ImageUrl>C:\Users\84859\Desktop\handon\MiniHotelManagement\MiniHotelManagement\bin\Debug\net6.0-windows\Images\Untitled (2).png</ImageUrl>
+  </Room>
+  <Room>
+    <RoomId>R0003</RoomId>
+    <RoomName>Room 202</RoomName>
+    <RoomTypeId>RT0003</RoomTypeId>
+    <Description>A luxury suite with living room and bedroom</Description>
+    <Capacity>4</Capacity>
+    <ImageUrl />
+  </Room>
+</ArrayOfRoom>

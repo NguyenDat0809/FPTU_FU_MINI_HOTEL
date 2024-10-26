@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfRoomType xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <RoomType>
+    <RoomTypeId>RT0001</RoomTypeId>
+    <RoomTypeName>Single</RoomTypeName>
+    <Description>A room assigned to one person.</Description>
+  </RoomType>
+  <RoomType>
+    <RoomTypeId>RT0002</RoomTypeId>
+    <RoomTypeName>Double2</RoomTypeName>
+    <Description>A room assigned to two people.</Description>
+  </RoomType>
+  <RoomType>
+    <RoomTypeId>RT0003</RoomTypeId>
+    <RoomTypeName>Suite</RoomTypeName>
+    <Description>A set of rooms forming one residence.</Description>
+  </RoomType>
+</ArrayOfRoomType>

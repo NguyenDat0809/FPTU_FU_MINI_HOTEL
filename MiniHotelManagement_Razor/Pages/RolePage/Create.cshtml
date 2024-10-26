@@ -1,0 +1,46 @@
+﻿@page
+@model MiniHotelManagement_Razor.Pages.RolePage.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+@{
+    var canParse = int.TryParse(HttpContext.Session.GetString("Role"), out int roleId);
+    if (!canParse)
+        Response.Redirect("/Index");
+    if (roleId != 2 && roleId != 1)
+        Response.Redirect("/AccessDenied");
+}
+
+<h1>Create</h1>
+
+<h4>Role</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Role.RoleId" class="control-label"></label>
+                <input asp-for="Role.RoleId" class="form-control" />
+                <span asp-validation-for="Role.RoleId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Role.RoleName" class="control-label"></label>
+                <input asp-for="Role.RoleName" class="form-control" />
+                <span asp-validation-for="Role.RoleName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

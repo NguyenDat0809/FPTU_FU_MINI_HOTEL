@@ -1,0 +1,64 @@
+﻿@page
+@model MiniHotelManagement_Razor.Pages.RoomPage.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+@{
+    var canParse = int.TryParse(HttpContext.Session.GetString("Role"), out int roleId);
+    if (!canParse)
+        Response.Redirect("/Index");
+}
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Room[0].RoomName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Room[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Room[0].Capacity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Room[0].ImageUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Room[0].RoomType)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Room) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoomName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Capacity)
+            </td>
+            <td>
+                    <img src="/images/@Html.DisplayFor(modelItem => item.ImageUrl)" width="150" height="150" style="object-fit: cover;" alt="Image" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoomType.RoomTypeId)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.RoomId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.RoomId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.RoomId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

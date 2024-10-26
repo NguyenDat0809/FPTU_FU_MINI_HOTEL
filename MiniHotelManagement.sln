@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35222.181
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiniHotelManagement", "MiniHotelManagement\MiniHotelManagement.csproj", "{03971AE4-54FE-488F-B204-5D83C951199B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelManagement_BusinessObject", "HotelManagement_BusinessObject\HotelManagement_BusinessObject.csproj", "{21F56E5F-8F0C-4879-B571-420DCEC3224C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelManagement_DAO", "HotelManagement_DAO\HotelManagement_DAO.csproj", "{3848B399-976C-47D6-9FB3-05A1494BB42E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelManagement_Repositories", "HotelManagement_Repositories\HotelManagement_Repositories.csproj", "{40345FFE-C8B4-48E7-B610-B454028EB6FF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelManagement_Services", "HotelManagement_Services\HotelManagement_Services.csproj", "{C10A2930-1668-467F-B0C8-C66BB0354E7B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiniHotelManagement_Razor", "MiniHotelManagement_Razor\MiniHotelManagement_Razor.csproj", "{7333D3B6-EF9F-416B-97BC-4F722898A3F7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{03971AE4-54FE-488F-B204-5D83C951199B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03971AE4-54FE-488F-B204-5D83C951199B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03971AE4-54FE-488F-B204-5D83C951199B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03971AE4-54FE-488F-B204-5D83C951199B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21F56E5F-8F0C-4879-B571-420DCEC3224C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21F56E5F-8F0C-4879-B571-420DCEC3224C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21F56E5F-8F0C-4879-B571-420DCEC3224C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21F56E5F-8F0C-4879-B571-420DCEC3224C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3848B399-976C-47D6-9FB3-05A1494BB42E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3848B399-976C-47D6-9FB3-05A1494BB42E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3848B399-976C-47D6-9FB3-05A1494BB42E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3848B399-976C-47D6-9FB3-05A1494BB42E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40345FFE-C8B4-48E7-B610-B454028EB6FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40345FFE-C8B4-48E7-B610-B454028EB6FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40345FFE-C8B4-48E7-B610-B454028EB6FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40345FFE-C8B4-48E7-B610-B454028EB6FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C10A2930-1668-467F-B0C8-C66BB0354E7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C10A2930-1668-467F-B0C8-C66BB0354E7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C10A2930-1668-467F-B0C8-C66BB0354E7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C10A2930-1668-467F-B0C8-C66BB0354E7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7333D3B6-EF9F-416B-97BC-4F722898A3F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7333D3B6-EF9F-416B-97BC-4F722898A3F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7333D3B6-EF9F-416B-97BC-4F722898A3F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7333D3B6-EF9F-416B-97BC-4F722898A3F7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D3ED0911-8953-4AD2-8C2F-72C040E127A1}
+	EndGlobalSection
+EndGlobal

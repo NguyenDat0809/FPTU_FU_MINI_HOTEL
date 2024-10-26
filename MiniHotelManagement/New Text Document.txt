@@ -1,0 +1,53 @@
+[
+  {
+    "RoomId": "R0001",
+    "RoomName": "Room 101",
+    "RoomTypeId": "RT0001",
+    "Description": "A single room with a king-size bed",
+    "Capacity": 2,
+    "ImageUrl": "img2.jpg",
+    "RoomType": {
+      "RoomTypeId": "RT0001",
+      "RoomTypeName": "Single",
+      "Description": "A room assigned to one person.",
+      "Rooms": [
+        null
+      ]
+    },
+    "BookingReservations": []
+  },
+  {
+    "RoomId": "R0002",
+    "RoomName": "Room 101",
+    "RoomTypeId": "RT0001",
+    "Description": "A single room with a king-size bed",
+    "Capacity": 2,
+    "ImageUrl": "6bec47b1-673f-4bed-98eb-2468e511845f.jpg",
+    "RoomType": {
+      "RoomTypeId": "RT0001",
+      "RoomTypeName": "Single",
+      "Description": "A room assigned to one person.",
+      "Rooms": [
+        null
+      ]
+    },
+    "BookingReservations": []
+  },
+  {
+    "RoomId": "R0003",
+    "RoomName": "Room 202",
+    "RoomTypeId": "RT0003",
+    "Description": "A luxury suite with living room and bedroom",
+    "Capacity": 4,
+    "ImageUrl": "img2.jpg",
+    "RoomType": {
+      "RoomTypeId": "RT0003",
+      "RoomTypeName": "Suite",
+      "Description": "A set of rooms forming one residence.",
+      "Rooms": [
+        null
+      ]
+    },
+    "BookingReservations": []
+  }
+]

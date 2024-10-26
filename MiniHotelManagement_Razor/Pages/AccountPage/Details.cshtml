@@ -1,0 +1,49 @@
+﻿@page
+@model MiniHotelManagement_Razor.Pages.AccountPage.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+@{
+    var canParse = int.TryParse(HttpContext.Session.GetString("Role"), out int roleId);
+    if (!canParse)
+        Response.Redirect("/Index");
+    if (roleId != 2 && roleId != 1)
+        Response.Redirect("/AccessDenied");
+}
+<h1>Details</h1>
+
+<div>
+    <h4>Account</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Account.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Account.Email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Account.Password)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Account.Password)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Account.FullName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Account.FullName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Account.Role)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Account.Role.RoleName)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Account?.AccountId">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

@@ -1,0 +1,20 @@
+[
+  {
+    "RoomTypeId": "RT0001",
+    "RoomTypeName": "Single",
+    "Description": "A room assigned to one person.",
+    "Rooms": []
+  },
+  {
+    "RoomTypeId": "RT0002",
+    "RoomTypeName": "Double2",
+    "Description": "A room assigned to two people.",
+    "Rooms": []
+  },
+  {
+    "RoomTypeId": "RT0003",
+    "RoomTypeName": "Suite",
+    "Description": "A set of rooms forming one residence.",
+    "Rooms": []
+  }
+]

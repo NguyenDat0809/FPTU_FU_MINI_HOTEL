@@ -1,0 +1,68 @@
+﻿@page
+@model MiniHotelManagement_Razor.Pages.RoomTypePage.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+@{
+    var canParse = int.TryParse(HttpContext.Session.GetString("Role"), out int roleId);
+    if (!canParse)
+        Response.Redirect("/Index");
+
+}
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<div>
+    <div>
+        <span>Json</span>
+        <form method="post" asp-page-handler="JsonReader">
+            <span>
+                <button type="submit" class="btn btn-primary" name="action" value="import">Import</button>
+                <button type="submit" class="btn btn-secondary" name="action" value="export">Export</button>
+            </span>
+        </form>
+    </div>
+    <div>
+        <span>XML</span>
+        <form method="post" asp-page-handler="XmlReader">
+            <span>
+                <button type="submit" class="btn btn-primary" name="action" value="import">Import</button>
+                <button type="submit" class="btn btn-secondary" name="action" value="export">Export</button>
+            </span>
+        </form>
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RoomType[0].RoomTypeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoomType[0].Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.RoomType)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomTypeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.RoomTypeId">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.RoomTypeId">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.RoomTypeId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

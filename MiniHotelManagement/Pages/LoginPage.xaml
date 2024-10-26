@@ -1,0 +1,66 @@
+﻿<Page x:Class="MiniHotelManagement.Pages.LoginPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MiniHotelManagement.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="LoginPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="500"/>
+
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <!--Title-->
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="3">
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"  FontSize="30" FontWeight="Bold" >
+            <Run Text="F" Foreground="#FF1055a2" />
+            <Run Text="P" Foreground="#FFE89418" />
+            <Run Text="T" Foreground="#FF56b94e" />
+            <Run Text="H" Foreground="#FFbfc0c8" />
+            </TextBlock>
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"  FontSize="30" FontWeight="Bold" Text="FPU Hotel Management" Foreground="#FFbfc0c8" />
+        </StackPanel>
+        <!--Input fields-->
+        <!--Input fields-->
+        <Grid Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Email -->
+            <TextBlock  Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" FontSize="16" FontWeight="Bold" Text="Email" Foreground="#FFbfc0c8" />
+            <TextBox x:Name="txtEmail" Grid.Row="0" Grid.Column="1" Padding="10" Margin="20 0 0 10" />
+
+            <!-- Password -->
+            <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" FontSize="16" FontWeight="Bold" Text="Password" Foreground="#FFbfc0c8" />
+            <PasswordBox  x:Name="pw" Grid.Row="1" Grid.Column="1" Padding="10" Margin="20 0 0 10" />
+        </Grid>
+        <StackPanel Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Top" >
+            <Button VerticalAlignment="Center" FontSize="16"  Visibility="Hidden" 
+                    Background="Transparent"
+                    FontWeight="Bold" Content="You don't have account ?"        Foreground="#FFbfc0c8" 
+                    BorderThickness="0" MouseEnter="Button_MouseEnter"/>
+        </StackPanel>
+        <WrapPanel Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Bottom" Orientation="Horizontal" >
+            <Button Content="Login" Padding="70 10" Click="Button_Click"/>
+        </WrapPanel>
+    </Grid>
+</Page>
