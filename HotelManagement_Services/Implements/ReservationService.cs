@@ -41,6 +41,10 @@ namespace HotelManagement_Services.Implements
         {
             return await _reservationRepository.GetReservationsByDate(start, end);
         }
+        public async Task<IEnumerable<BookingReservation>> GetReservationsByDay(DateTime day)
+        {
+            return await _reservationRepository.GetReservationsByDay(day);
+        }
 
         public async Task<bool> UpdateReservation(BookingReservation reservation)
         {

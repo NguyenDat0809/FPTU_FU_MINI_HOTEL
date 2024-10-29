@@ -52,6 +52,24 @@ namespace MiniHotelManagement.Pages
                     MessageBox.Show("Duplicated Reservation id", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                     return;
                 }
+                var duplicatedDayReservation = await _reservationService.GetReservationsByDay(reservation.BookingDate.Value);
+                if (duplicatedDayReservation != null)
+                {
+                    var isSameRoomInDay = false;
+                    foreach (var roomInDay in duplicatedDayReservation) {
+                        if(roomInDay.RoomId == reservation.RoomId)
+                        {
+                            isSameRoomInDay = true;
+                            break;
+                        }
+                    }
+                    if (isSameRoomInDay)
+                    {
+                        MessageBox.Show($"This room is ordered in {reservation.BookingDate}", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                        return;
+                    }
+                  
+                }
                 var addRs = await _reservationService.CreateReservation(reservation);
                 if (addRs)
                     MessageBox.Show("Created Successfully", "Information", MessageBoxButton.OK, MessageBoxImage.Information);

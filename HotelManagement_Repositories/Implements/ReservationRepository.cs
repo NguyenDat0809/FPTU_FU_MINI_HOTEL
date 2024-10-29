@@ -3,6 +3,7 @@ using HotelManagement_DAO;
 using HotelManagement_Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -41,6 +42,16 @@ namespace HotelManagement_Repositories.Implements
             if (end == null)
                 return await GenericDAO<BookingReservation>.Instance.GetListAsync(x => x.BookingDate >= start);
             return await GenericDAO<BookingReservation>.Instance.GetListAsync(x => x.BookingDate >= start && x.BookingDate <= end);
+        }
+        public async Task<IEnumerable<BookingReservation>> GetReservationsByDate(DateTime day)
+        {
+           
+            return await GenericDAO<BookingReservation>.Instance.GetListAsync(x => x.BookingDate == day);
+        }
+
+        public async Task<IEnumerable<BookingReservation>> GetReservationsByDay(DateTime day)
+        {
+            return await GenericDAO<BookingReservation>.Instance.GetListAsync(x => x.BookingDate == day);
         }
 
         public bool UpdateReservation(BookingReservation reservation)
