@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace MiniHotelManagement
 {
@@ -19,15 +21,23 @@ namespace MiniHotelManagement
     /// </summary>
     public partial class ImageShowWindow : Window
     {
-        private readonly BitmapImage _image;
+        private readonly string _imagePath;
         public ImageShowWindow(string path)
         {
             InitializeComponent();
-            _image = new BitmapImage(new Uri(path));
+            _imagePath = path;
         }
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            imageSource.Source = _image;
+            try
+            {
+                var bitmap = new BitmapImage(new Uri(_imagePath));
+                imageSource.Source = bitmap;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error occure, Please contact to admin");
+            }
         }
     }
 }
