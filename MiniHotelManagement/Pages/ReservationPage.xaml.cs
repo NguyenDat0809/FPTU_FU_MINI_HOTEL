@@ -65,7 +65,7 @@ namespace MiniHotelManagement.Pages
                     }
                     if (isSameRoomInDay)
                     {
-                        MessageBox.Show($"This room is ordered in {reservation.BookingDate}", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show($"This room is ordered in {reservation.BookingDateFormat}", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                         return;
                     }
                   
@@ -75,7 +75,7 @@ namespace MiniHotelManagement.Pages
                     MessageBox.Show("Created Successfully", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                 else
                     MessageBox.Show("Created Failed", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
-
+                LoadReservations();
             }
             catch (Exception ex)
             {
