@@ -89,8 +89,13 @@ namespace MiniHotelManagement
         {
             var staffRole =  await _roleService.GetRoleByName("Staff");
             var customerRole = await _roleService.GetRoleByName("Customer");
+            if (role == null || role == customerRole.RoleId)
+            {
+                MessageBox.Show("You have no permission");
+                return;
+            }
 
-            if (role == staffRole.RoleId || role == customerRole.RoleId)
+            if (role == staffRole.RoleId )
             {
                 btnAccountPage.Visibility = Visibility.Collapsed;
                 btnRolePage.Visibility = Visibility.Collapsed;

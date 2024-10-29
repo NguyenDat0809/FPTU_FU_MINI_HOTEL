@@ -36,7 +36,7 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Id" Width="80" DisplayMemberBinding="{Binding BookingReservationId}" />
-                    <GridViewColumn Header="Booking Date" Width="100" DisplayMemberBinding="{Binding BookingDate}"/>
+                    <GridViewColumn Header="Booking Date" Width="100" DisplayMemberBinding="{Binding BookingDateFormat}"/>
                     <GridViewColumn Header="Total Price" Width="100" DisplayMemberBinding="{Binding TotalPrice}"/>
                     <GridViewColumn Header="Room" Width="100" DisplayMemberBinding="{Binding Room.RoomName}"/>
                     <GridViewColumn Header="Customer" Width="100" DisplayMemberBinding="{Binding CustomerName}"/>
