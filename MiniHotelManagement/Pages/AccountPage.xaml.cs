@@ -119,6 +119,13 @@ namespace MiniHotelManagement.Pages
             try
             {
                 var account = GetAccountFromForm();
+                var checkedAccount = await _accountService.GetAccountById(account.AccountId);
+                var roleAdmin = await _roleService.GetRoleByName("Admin");
+                if (checkedAccount.RoleId == roleAdmin.RoleId)
+                {
+                    MessageBox.Show("Admin account can not be deleted", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
+                }
                 var deleteRs = await _accountService.DeleteAccount(account);
                 if (deleteRs)
                     MessageBox.Show("Deleted Successfully", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
