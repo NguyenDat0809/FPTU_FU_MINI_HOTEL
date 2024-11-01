@@ -11,6 +11,7 @@ using HotelManagement_BusinessObject.Models;
 using HotelManagement_Services.Interfaces;
 using System.ComponentModel.DataAnnotations;
 using HotelManagement_Services.Implements;
+using MiniHotelManagement_Razor.Extensions;
 
 namespace MiniHotelManagement_Razor.Pages.RoomPage
 {
@@ -31,6 +32,7 @@ namespace MiniHotelManagement_Razor.Pages.RoomPage
         public Room Room { get; set; } = default!;
         [Required(ErrorMessage = "Please choose at least 1 file")]
         [DataType(DataType.Upload)]
+        [AllowedExtensions(errorMessage: "Only png, jpg, jpeg, gif file are allowed", ".png",".jpg", ".jpeg", ".gif")]
         //[FileExtensions(Extensions = "png,jpg,jpeg,gif", ErrorMessage = "Only png, jpg, jpeg, gif files are allowed.")]
         [Display(Name = " Choose file(s) to upload")]
         [BindProperty]
