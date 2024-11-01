@@ -7,7 +7,10 @@
 @{
     var canParse = int.TryParse(HttpContext.Session.GetString("Role"), out int roleId);
     if (!canParse)
+    {
         Response.Redirect("/Index");
+        return;
+    }
     if (roleId != 2 && roleId != 1)
         Response.Redirect("/AccessDenied");
 }
