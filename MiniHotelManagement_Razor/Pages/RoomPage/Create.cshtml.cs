@@ -20,15 +20,7 @@ namespace MiniHotelManagement_Razor.Pages.RoomPage
         private readonly IRoomService _roomService;
         private readonly IRoomTypeService _roomTypeService;
         private readonly IRazorPictureService _pictureService;
-        [BindProperty]
-        public Room Room { get; set; } = default!;
-        [Required(ErrorMessage = "Please choose at least 1 file")]
-        [DataType(DataType.Upload)]
-        [AllowedExtensions(errorMessage: "Only png, jpg, jpeg, gif file are allowed", ".png", ".jpg", ".jpeg", ".gif")]
-        //[FileExtensions(Extensions = "png,jpg,jpeg,gif", ErrorMessage = "Only png, jpg, jpeg, gif files are allowed.")]
-        [Display(Name = " Choose file(s) to upload")]
-        [BindProperty]
-        public IFormFile[] FileUpload { get; set; }
+       
         public CreateModel(IRoomService roomService, IRoomTypeService roomTypeService, IRazorPictureService pictureService)
         {
             _roomTypeService = roomTypeService;
@@ -39,23 +31,34 @@ namespace MiniHotelManagement_Razor.Pages.RoomPage
         public async Task<IActionResult> OnGet()
         {
             var types = await _roomTypeService.GetRoomTypes();
-            ViewData["RoomTypeId"] = new SelectList(types, "RoomTypeId", "RoomTypeId");
+            ViewData["RoomTypeId"] = new SelectList(types, "RoomTypeId", "RoomTypeName");
             return Page();
         }
-        
 
+        [BindProperty]
+        public Room Room { get; set; } = default!;
+        [Required(ErrorMessage = "Please choose at least 1 file")]
+        [DataType(DataType.Upload)]
+        //[AllowedExtensions(errorMessage: "Only png, jpg, jpeg, gif file are allowed", ".png", ".jpg", ".jpeg", ".gif")]
+        //[FileExtensions(Extensions = "png,jpg,jpeg,gif", ErrorMessage = "Only png, jpg, jpeg, gif files are allowed.")]
+        [Display(Name = " Choose file(s) to upload")]
+        [BindProperty]
+        public IFormFile FileUpload { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid || _roomService == null || Room == null)
             {
+                var types = await _roomTypeService.GetRoomTypes();
+                ViewData["RoomTypeId"] = new SelectList(types, "RoomTypeId", "RoomTypeName");
+
                 return Page();
             }
             //upload image
             if (FileUpload != null)
             {
-                var imagePath = await _pictureService.SaveImageToEnv(FileUpload[0], ".png", ".jpg", ".jpeg", ".gif");
+                var imagePath = await _pictureService.SaveImageToEnv(FileUpload, ".png", ".jpg", ".jpeg", ".gif");
                 if (string.IsNullOrEmpty(imagePath))
                 {
                     TempData["ErrorMessage"] = "Upload Image(.png, .jpg, .jpeg, .gif) failed";
