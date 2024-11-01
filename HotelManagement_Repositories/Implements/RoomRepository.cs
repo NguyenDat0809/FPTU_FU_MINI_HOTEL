@@ -25,7 +25,7 @@ namespace HotelManagement_Repositories.Implements
 
         public async Task<Room?> GetRoomById(string id)
         {
-            return await GenericDAO<Room>.Instance.SingleOrDefaultAsync(x => x.RoomId == id);
+            return await GenericDAO<Room>.Instance.SingleOrDefaultAsync(x => x.RoomId == id, include: q => q.Include(x => x.RoomType));
         }
 
         public async Task<IEnumerable<Room>> GetRoomByName(string name)
