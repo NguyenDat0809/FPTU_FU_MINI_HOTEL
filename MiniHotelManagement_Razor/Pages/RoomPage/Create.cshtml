@@ -1,14 +1,22 @@
 ﻿@page
+@using HotelManagement_Services.Interfaces
 @model MiniHotelManagement_Razor.Pages.RoomPage.CreateModel
 
 @{
     ViewData["Title"] = "Create";
 }
 @{
+    @inject IRoleService _roleService
+    var customerRole = await _roleService.GetRoleByName("Customer");
     var canParse = int.TryParse(HttpContext.Session.GetString("Role"), out int roleId);
     if (!canParse)
     {
         Response.Redirect("/Index");
+        return;
+    }
+    if (roleId == null || roleId == customerRole.RoleId)
+    {
+        Response.Redirect("/AccessDenied");
         return;
     }
     if (roleId != 2 && roleId != 1)
