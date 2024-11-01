@@ -43,7 +43,7 @@ namespace MiniHotelManagement_Razor.Pages.RoomPage
         //[FileExtensions(Extensions = "png,jpg,jpeg,gif", ErrorMessage = "Only png, jpg, jpeg, gif files are allowed.")]
         [Display(Name = " Choose file(s) to upload")]
         [BindProperty]
-        public IFormFile FileUpload { get; set; }
+        public IFormFile[] FileUpload { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
@@ -55,21 +55,24 @@ namespace MiniHotelManagement_Razor.Pages.RoomPage
 
                 return Page();
             }
+            var roomCheck = await _roomService.GetRoomById(Room.RoomId);
+            if (roomCheck != null)
+            {
+                TempData["ErrorMessage"] = "Account Id Duplicated";
+                return RedirectToPage("./Index");
+            }
+            
             //upload image
             if (FileUpload != null)
             {
-                var imagePath = await _pictureService.SaveImageToEnv(FileUpload, ".png", ".jpg", ".jpeg", ".gif");
+                var imagePath = await _pictureService.SaveImageToEnv(FileUpload[0], ".png", ".jpg", ".jpeg", ".gif");
                 if (string.IsNullOrEmpty(imagePath))
                 {
                     TempData["ErrorMessage"] = "Upload Image(.png, .jpg, .jpeg, .gif) failed";
                     return RedirectToPage("./Index");
                 }
                 Room.ImageUrl = imagePath;
-                var updateRs = await _roomService.UpdateRoom(Room);
-                if (!updateRs)
-                    TempData["ErrorMessage"] = "update fail";
-                else
-                    TempData["SuccessMessage"] = "Update success";
+                
             }
             var addResult = await _roomService.CreateRoom(Room);
             if (!addResult)
