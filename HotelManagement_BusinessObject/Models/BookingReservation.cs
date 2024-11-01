@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -16,7 +17,8 @@ namespace HotelManagement_BusinessObject.Models
         [Required]
         public string RoomId { get; set; } = null!;
         [Required]
-        public byte? BookingStatus { get; set; } 
+        public byte? BookingStatus { get; set; }
+        [ValidateNever]
         public virtual Room Room { get; set; } = null!;
         [NotMapped]
         public string BookingDateFormat

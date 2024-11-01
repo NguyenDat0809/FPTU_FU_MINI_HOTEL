@@ -57,17 +57,14 @@ namespace MiniHotelManagement_Razor.Pages.ReservationPage
 
             try
             {
-                if (DateTime.Parse(BookingReservation.BookingDateFormat).Day > DateTime.Now.Day)
+                if (BookingReservation.BookingDate.Value.Day <= DateTime.Now.Day)
                 {
+                    var rooms = await _roomService.GetRooms();
+                    ViewData["RoomId"] = new SelectList(rooms, "RoomId", "RoomName");
                     TempData["ErrorMessage"] = "Only book for tomorow";
                     return Page(); ;
                 }
-                var duplicatedReservation = await _reservationService.GetReservationById(BookingReservation.BookingReservationId);
-                if (duplicatedReservation != null)
-                {
-                    TempData["ErrorMessage"] = "Duplicated Reservation id";
-                    return Page(); ;
-                }
+                
                 var duplicatedDayReservation = await _reservationService.GetReservationsByDay(BookingReservation.BookingDate.Value);
                 if (duplicatedDayReservation != null)
                 {
@@ -82,13 +79,16 @@ namespace MiniHotelManagement_Razor.Pages.ReservationPage
                     }
                     if (isSameRoomInDay)
                     {
-                        TempData["ErrorMessage"] = $"This room is ordered in {BookingReservation.BookingDate}";
+                        var rooms = await _roomService.GetRooms();
+                        ViewData["RoomId"] = new SelectList(rooms, "RoomId", "RoomName");
+                        TempData["ErrorMessage"] = $"This room is ordered in {BookingReservation.BookingDateFormat}";
                         return Page();
                     }
 
                 }
+                var deletedRs =  _reservationService.DeleteReservation(BookingReservation);
                 BookingReservation.BookingDate = DateTime.Parse(BookingReservation.BookingDateFormat);
-                var updateRs = await _reservationService.UpdateReservation(BookingReservation);
+                var updateRs = await _reservationService.CreateReservation(BookingReservation);
                 if (!updateRs)
                     TempData["ErrorMessage"] = "Update fail";
                 else

@@ -35,16 +35,22 @@ namespace MiniHotelManagement_Razor.Pages.ReservationPage
         {
             if (!ModelState.IsValid || _reservationService == null || BookingReservation == null)
             {
+                var rooms = await _roomService.GetRooms();
+                ViewData["RoomId"] = new SelectList(rooms, "RoomId", "RoomName");
                 return Page();
             }
-            if (DateTime.Parse(BookingReservation.BookingDateFormat).Day > DateTime.Now.Day)
+            if (DateTime.Parse(BookingReservation.BookingDateFormat).Day <= DateTime.Now.Day)
             {
+                var rooms = await _roomService.GetRooms();
+                ViewData["RoomId"] = new SelectList(rooms, "RoomId", "RoomName");
                 TempData["ErrorMessage"] = "Only book for tomorow";
                 return Page(); ;
             }
             var duplicatedReservation = await _reservationService.GetReservationById(BookingReservation.BookingReservationId);
             if (duplicatedReservation != null)
             {
+                var rooms = await _roomService.GetRooms();
+                ViewData["RoomId"] = new SelectList(rooms, "RoomId", "RoomName");
                 TempData["ErrorMessage"] = "Duplicated Reservation id";
                 return Page(); ;
             }
@@ -62,7 +68,9 @@ namespace MiniHotelManagement_Razor.Pages.ReservationPage
                 }
                 if (isSameRoomInDay)
                 {
-                    TempData["ErrorMessage"] = $"This room is ordered in {BookingReservation.BookingDate}";
+                    var rooms = await _roomService.GetRooms();
+                    ViewData["RoomId"] = new SelectList(rooms, "RoomId", "RoomName");
+                    TempData["ErrorMessage"] = $"This room is ordered in {BookingReservation.BookingDateFormat}";
                     return Page();
                 }
 

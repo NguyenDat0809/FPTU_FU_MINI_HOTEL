@@ -45,17 +45,25 @@ namespace MiniHotelManagement_Razor.Pages.ReservationPage
 
         public async Task<IActionResult> OnPostAsync(string id)
         {
-            if (id == null || _reservationService == null)
+            try
             {
-                return NotFound();
-            }
-            var bookingreservation = await _reservationService.GetReservationById(id);
+                if (id == null || _reservationService == null)
+                {
+                    return NotFound();
+                }
+                var bookingreservation = await _reservationService.GetReservationById(id);
 
-            if (bookingreservation != null)
-            {
-                BookingReservation = bookingreservation;
-                _reservationService.DeleteReservation(BookingReservation);
+                if (bookingreservation != null)
+                {
+                    BookingReservation = bookingreservation;
+                    _reservationService.DeleteReservation(BookingReservation);
+                }
             }
+            catch (Exception)
+            {
+                TempData["ErrorMessage"] = "Some one use this room";
+            }
+           
 
             return RedirectToPage("./Index");
         }
