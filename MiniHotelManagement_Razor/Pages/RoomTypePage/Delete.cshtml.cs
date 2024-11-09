@@ -50,7 +50,8 @@ namespace MiniHotelManagement_Razor.Pages.RoomTypePage
             {
                 if (id == null || _roomTypeService == null)
                 {
-                    return NotFound();
+                    TempData["ErrorMessage"] = "Not found room type in database";
+                    return RedirectToPage("./Index");
                 }
                 var roomtype = await _roomTypeService.GetRoomTypeById(id);
 
@@ -58,6 +59,10 @@ namespace MiniHotelManagement_Razor.Pages.RoomTypePage
                 {
                     RoomType = roomtype;
                     var deleteRs = await _roomTypeService.DeleteRoomType(roomtype);
+                }else
+                {
+                    TempData["ErrorMessage"] = "Not found room type in database";
+                    return RedirectToPage("./Index");
                 }
             }
             catch (DbUpdateException ue)

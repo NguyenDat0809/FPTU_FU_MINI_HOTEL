@@ -30,13 +30,14 @@ namespace MiniHotelManagement_Razor.Pages.RoomTypePage
         {
             if (id == null || _roomTypeService == null)
             {
-                return NotFound();
+                TempData["ErrorMessage"] = "Not found room type in database";
+                return RedirectToPage("./Index");
             }
 
             var roomtype =  await _roomTypeService.GetRoomTypeById(id);
             if (roomtype == null)
-            {
-                return NotFound();
+            {TempData["ErrorMessage"] = "Not found room type in database";
+                return RedirectToPage("./Index");
             }
             RoomType = roomtype;
             return Page();
