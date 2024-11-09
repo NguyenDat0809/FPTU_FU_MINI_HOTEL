@@ -22,7 +22,7 @@ namespace MiniHotelManagement_Razor.Pages.RoomTypePage
         }
 
         [BindProperty]
-      public RoomType RoomType { get; set; } = default!;
+        public RoomType RoomType { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(string id)
         {
@@ -37,7 +37,7 @@ namespace MiniHotelManagement_Razor.Pages.RoomTypePage
             {
                 return NotFound();
             }
-            else 
+            else
             {
                 RoomType = roomtype;
             }
@@ -46,16 +46,27 @@ namespace MiniHotelManagement_Razor.Pages.RoomTypePage
 
         public async Task<IActionResult> OnPostAsync(string id)
         {
-            if (id == null || _roomTypeService == null)
+            try
             {
-                return NotFound();
-            }
-            var roomtype = await _roomTypeService.GetRoomTypeById(id);
+                if (id == null || _roomTypeService == null)
+                {
+                    return NotFound();
+                }
+                var roomtype = await _roomTypeService.GetRoomTypeById(id);
 
-            if (roomtype != null)
+                if (roomtype != null)
+                {
+                    RoomType = roomtype;
+                    var deleteRs = await _roomTypeService.DeleteRoomType(roomtype);
+                }
+            }
+            catch (DbUpdateException ue)
             {
-                RoomType = roomtype;
-               var deleteRs = await _roomTypeService.DeleteRoomType(roomtype);
+                TempData["ErrorMessage"] = "Can not delete this room type";
+            }catch (Exception e)
+            {
+                TempData["ErrorMessage"] = "Error";
+
             }
 
             return RedirectToPage("./Index");
