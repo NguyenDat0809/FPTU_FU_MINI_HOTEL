@@ -41,14 +41,14 @@ namespace HotelManagement_Services.Implements
             return await _roomRepository.GetRoomById(id);
         }
 
-        public async Task<bool> UpdateRoom(Room role)
+        public async Task<bool> UpdateRoom(Room room)
         {
-            var roomUpdate = await GetRoomById(role.RoomId);
-            roomUpdate.RoomName = role.RoomName;
-            roomUpdate.RoomTypeId = role.RoomTypeId;
-            roomUpdate.Capacity = role.Capacity;
-            roomUpdate.Description = role.Description;
-            roomUpdate.ImageUrl = role.ImageUrl;
+            var roomUpdate = await GetRoomById(room.RoomId);
+            roomUpdate.RoomName = room.RoomName;
+            roomUpdate.RoomTypeId = room.RoomTypeId;
+            roomUpdate.Capacity = room.Capacity;
+            roomUpdate.Description = room.Description;
+            roomUpdate.ImageUrl = room.ImageUrl;
             return _roomRepository.UpdateRoom(roomUpdate);
         }
 

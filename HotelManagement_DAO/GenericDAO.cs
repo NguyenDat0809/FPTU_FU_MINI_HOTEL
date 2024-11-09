@@ -17,7 +17,7 @@ namespace HotelManagement_DAO
             get
             {
                 //if (_instance == null)
-                    _instance = new GenericDAO<T>();
+                _instance = new GenericDAO<T>();
                 return _instance;
             }
             set { }

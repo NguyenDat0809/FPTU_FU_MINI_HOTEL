@@ -1,13 +1,24 @@
 ﻿@page
+@using HotelManagement_Services.Interfaces
 @model MiniHotelManagement_Razor.Pages.RoomPage.EditModel
 
 @{
     ViewData["Title"] = "Edit";
 }
 @{
+    @inject IRoleService _roleService
+    var customerRole = await _roleService.GetRoleByName("Customer");
     var canParse = int.TryParse(HttpContext.Session.GetString("Role"), out int roleId);
     if (!canParse)
+    {
         Response.Redirect("/Index");
+        return;
+    }
+    if (roleId == null || roleId == customerRole.RoleId)
+    {
+        Response.Redirect("/AccessDenied");
+        return;
+    }
     if (roleId != 2 && roleId != 1)
         Response.Redirect("/AccessDenied");
 }
@@ -51,7 +62,7 @@
                         <img src="/images/@Model.Room.ImageUrl" width="150" height="150" style="object-fit: cover;" alt="Image" />
                     </div>
                 }
-                <span asp-validation-for="Room.ImageUrl" class="text-danger"></span>
+                <span asp-validation-for="FileUpload" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

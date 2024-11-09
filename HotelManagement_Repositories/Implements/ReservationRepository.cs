@@ -25,7 +25,8 @@ namespace HotelManagement_Repositories.Implements
 
         public async Task<BookingReservation?> GetReservationById(string id)
         {
-            return await GenericDAO<BookingReservation>.Instance.SingleOrDefaultAsync(x => x.BookingReservationId == id);
+            return await GenericDAO<BookingReservation>.Instance.SingleOrDefaultAsync(x => x.BookingReservationId == id
+            , include: q => q.Include(x => x.Room));
         }
 
         public async Task<IEnumerable<BookingReservation>> GetReservations()

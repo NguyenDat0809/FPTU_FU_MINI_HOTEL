@@ -1,13 +1,24 @@
 ﻿@page
+@using HotelManagement_Services.Interfaces
 @model MiniHotelManagement_Razor.Pages.RoomPage.CreateModel
 
 @{
     ViewData["Title"] = "Create";
 }
 @{
+    @inject IRoleService _roleService
+    var customerRole = await _roleService.GetRoleByName("Customer");
     var canParse = int.TryParse(HttpContext.Session.GetString("Role"), out int roleId);
     if (!canParse)
+    {
         Response.Redirect("/Index");
+        return;
+    }
+    if (roleId == null || roleId == customerRole.RoleId)
+    {
+        Response.Redirect("/AccessDenied");
+        return;
+    }
     if (roleId != 2 && roleId != 1)
         Response.Redirect("/AccessDenied");
 }
@@ -17,7 +28,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Room.RoomId" class="control-label"></label>
@@ -44,12 +55,19 @@
                 <span asp-validation-for="Room.Capacity" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Room.ImageUrl" class="control-label"></label>
-                <input asp-for="Room.ImageUrl" class="form-control" />
-                <span asp-validation-for="Room.ImageUrl" class="text-danger"></span>
+                <label asp-for="FileUpload" class="control-label"></label>
+                <input type="file" asp-for="FileUpload" class="form-control" />
+                <span asp-validation-for="FileUpload">@Model.FileUpload</span>
+                @if (Model.Room != null &&  !string.IsNullOrEmpty(Model.Room.ImageUrl))
+                {
+                    <div class="mt-3">
+                        <label>Current Image:</label>
+                        <img src="/images/@Model.Room.ImageUrl" width="150" height="150" style="object-fit: cover;" alt="Image" />
+                    </div>
+                }
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>

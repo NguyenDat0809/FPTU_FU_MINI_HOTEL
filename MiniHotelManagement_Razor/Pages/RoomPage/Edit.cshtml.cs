@@ -11,6 +11,7 @@ using HotelManagement_BusinessObject.Models;
 using HotelManagement_Services.Interfaces;
 using System.ComponentModel.DataAnnotations;
 using HotelManagement_Services.Implements;
+using MiniHotelManagement_Razor.Extensions;
 
 namespace MiniHotelManagement_Razor.Pages.RoomPage
 {
@@ -50,7 +51,7 @@ namespace MiniHotelManagement_Razor.Pages.RoomPage
             }
             Room = room;
             var types = await _roomTypeService.GetRoomTypes();
-            ViewData["RoomTypeId"] = new SelectList(types, "RoomTypeId", "RoomTypeId");
+            ViewData["RoomTypeId"] = new SelectList(types, "RoomTypeId", "RoomTypeName");
             return Page();
         }
 
@@ -60,6 +61,9 @@ namespace MiniHotelManagement_Razor.Pages.RoomPage
         {
             if (!ModelState.IsValid)
             {
+                var types = await _roomTypeService.GetRoomTypes();
+                ViewData["RoomTypeId"] = new SelectList(types, "RoomTypeId", "RoomTypeName");
+
                 return Page();
             }
 
